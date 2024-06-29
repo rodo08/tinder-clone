@@ -1,4 +1,4 @@
-import flameLogo from "../../images/flame-logo.png";
+import whiteLogo from "../../images/white-logo.png";
 import colorLogo from "../../images/color-logo.png";
 
 const Nav = ({ minimal, setShowModal, showModal, setIsSignUp }) => {
@@ -13,7 +13,7 @@ const Nav = ({ minimal, setShowModal, showModal, setIsSignUp }) => {
       <div className="logo-container">
         <img
           className="logo"
-          src={minimal ? flameLogo : colorLogo}
+          src={minimal ? colorLogo : whiteLogo}
           alt="tinder logo"
           height={50}
         />
