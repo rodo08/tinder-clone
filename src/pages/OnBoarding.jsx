@@ -1,18 +1,43 @@
+import { useState } from "react";
 import Nav from "../components/Nav/Nav";
 
 const OnBoarding = () => {
-  const handleSubmit = () => {
+  const [formData, setFormData] = useState({
+    user_id: "",
+    first_name: "",
+    dob_day: "",
+    dob_month: "",
+    dob_year: "",
+    show_gender: false,
+    gender_identity: "",
+    gender_interest: "",
+    email: "",
+    url: "",
+    about: "",
+    matches: [],
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log("submitted");
   };
-  const handleChange = () => {
-    console.log("change");
+
+  const handleChange = (e) => {
+    console.log("e", e);
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
+
+  console.log(formData);
+
   return (
     <>
       <Nav minimal={true} setShowModal={() => {}} showModal={false} />
       <div className="onboarding">
         <h2>Create account</h2>
-
         <form onSubmit={handleSubmit}>
           <section>
             <label htmlFor="first_name">First name</label>
@@ -20,40 +45,38 @@ const OnBoarding = () => {
               id="first_name"
               type="text"
               name="first_name"
-              placeholder="Fisrt name"
+              placeholder="First name"
               required={true}
-              value={""}
+              value={formData.first_name}
               onChange={handleChange}
             />
             <div className="multiple-input-container">
-              <label htmlFor="first_name">Birthday</label>
+              <label htmlFor="dob_day">Birthday</label>
               <input
                 id="dob_day"
                 type="number"
                 name="dob_day"
                 placeholder="DD"
                 required={true}
-                value={""}
+                value={formData.dob_day}
                 onChange={handleChange}
               />
-
               <input
                 id="dob_month"
                 type="number"
                 name="dob_month"
                 placeholder="MM"
                 required={true}
-                value={""}
+                value={formData.dob_month}
                 onChange={handleChange}
               />
-
               <input
                 id="dob_year"
                 type="number"
                 name="dob_year"
                 placeholder="YYYY"
                 required={true}
-                value={""}
+                value={formData.dob_year}
                 onChange={handleChange}
               />
             </div>
@@ -62,66 +85,66 @@ const OnBoarding = () => {
               <input
                 id="man-gender-identity"
                 type="radio"
-                name="gender-identity"
+                name="gender_identity"
                 value="man"
                 onChange={handleChange}
-                checked={false}
+                checked={formData.gender_identity === "man"}
               />
               <label htmlFor="man-gender-identity">Man</label>
               <input
                 id="woman-gender-identity"
                 type="radio"
-                name="gender-identity"
+                name="gender_identity"
                 value="woman"
                 onChange={handleChange}
-                checked={false}
+                checked={formData.gender_identity === "woman"}
               />
               <label htmlFor="woman-gender-identity">Woman</label>
               <input
                 id="more-gender-identity"
                 type="radio"
-                name="gender-identity"
+                name="gender_identity"
                 value="more"
                 onChange={handleChange}
-                checked={false}
+                checked={formData.gender_identity === "more"}
               />
               <label htmlFor="more-gender-identity">More</label>
             </div>
-            <label htmlFor="show-gender">Show gender on my profile</label>
+            <label htmlFor="show_gender">Show gender on my profile</label>
             <input
-              id="show-gender"
+              id="show_gender"
               type="checkbox"
-              name="show-gender"
+              name="show_gender"
               onChange={handleChange}
-              checked={false}
+              checked={formData.show_gender}
             />
             <label>Show Me</label>
             <div className="multiple-input-container">
               <input
                 id="man-gender-interest"
                 type="radio"
-                name="gender-interest"
+                name="gender_interest"
                 value="man"
                 onChange={handleChange}
-                checked={false}
+                checked={formData.gender_interest === "man"}
               />
               <label htmlFor="man-gender-interest">Man</label>
               <input
                 id="woman-gender-interest"
                 type="radio"
-                name="gender-interest"
+                name="gender_interest"
                 value="woman"
                 onChange={handleChange}
-                checked={false}
+                checked={formData.gender_interest === "woman"}
               />
               <label htmlFor="woman-gender-interest">Woman</label>
               <input
                 id="everyone-gender-interest"
                 type="radio"
-                name="gender-interest"
+                name="gender_interest"
                 value="everyone"
                 onChange={handleChange}
-                checked={false}
+                checked={formData.gender_interest === "everyone"}
               />
               <label htmlFor="everyone-gender-interest">Everyone</label>
             </div>
@@ -132,15 +155,13 @@ const OnBoarding = () => {
               name="about"
               required={true}
               placeholder="I like long walks..."
-              value={""}
+              value={formData.about}
               onChange={handleChange}
             />
-
             <input type="submit" />
           </section>
-
           <section>
-            <label htmlFor="about">Profile Picture</label>
+            <label htmlFor="url">Profile Picture</label>
             <div className="photo-container">
               <input
                 type="url"
@@ -149,6 +170,11 @@ const OnBoarding = () => {
                 onChange={handleChange}
                 required={true}
               />
+              <div className="photo-container">
+                {formData.url && (
+                  <img src={formData.url} alt="profile pic preview" />
+                )}
+              </div>
             </div>
           </section>
         </form>
