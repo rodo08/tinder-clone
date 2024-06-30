@@ -248,8 +248,11 @@ nav .logo-container .logo {
 }
 
 .card h3 {
+  margin-top: 0;
+}
+
+.dashboard .swipe-info {
   position: absolute;
   bottom: 0;
-  margin: 10px;
-  color: #fff;
+  padding: 50px;
 }
