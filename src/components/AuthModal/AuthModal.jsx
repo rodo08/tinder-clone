@@ -20,7 +20,7 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
         setError("Password need to match!");
         return;
       }
-      const response = await axios.post("http://http://localhost:8000/signup", {
+      const response = await axios.post("http://localhost:8000/signup", {
         email,
         password,
       });
