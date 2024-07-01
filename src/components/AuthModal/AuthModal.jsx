@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useCookie, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 
 const AuthModal = ({ setShowModal, isSignUp }) => {
   const [email, setEmail] = useState(null);
@@ -23,10 +23,10 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
         setError("Password need to match!");
         return;
       }
-      const response = await axios.post("http://localhost:8000/signup", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `http://localhost:8000/${isSignUp ? "signup" : "login"}`,
+        { email, password }
+      );
 
       setCookie("Email", response.data.email);
       setCookie("UserId", response.data.userId);
@@ -34,7 +34,8 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
 
       const success = response.status === 201;
 
-      if (success) navigate("/onboarding");
+      if (success && isSignUp) navigate("/onboarding");
+      if (success && !isSignUp) navigate("/dashboard");
     } catch (error) {
       console.log(error);
     }
@@ -66,14 +67,16 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
           required={true}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input
-          type="password"
-          id="password-check"
-          name="password"
-          placeholder="confirm password"
-          required={true}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
+        {isSignUp && (
+          <input
+            type="password"
+            id="password-check"
+            name="password-check"
+            placeholder="confirm password"
+            required={true}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        )}
         <input className="secondary-button" type="submit" />
         <p>{error}</p>
       </form>

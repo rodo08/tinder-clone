@@ -4,14 +4,14 @@ import { useState } from "react";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
-  const [isSignUp, setIsSigUp] = useState(true);
+  const [isSignUp, setIsSignUp] = useState(true);
 
   const authToken = false;
 
   const handleClick = () => {
     console.log("click");
     setShowModal(true);
-    setIsSigUp(true);
+    setIsSignUp(true);
   };
   return (
     <div className="overlay">
@@ -19,7 +19,7 @@ const Home = () => {
         minimal={false}
         setShowModal={setShowModal}
         showModal={showModal}
-        setIsSigUp={setIsSigUp}
+        setIsSignUp={setIsSignUp}
       />
       <div className="home">
         <h1 className="primary-title">Swipe Right&reg;</h1>
@@ -28,7 +28,11 @@ const Home = () => {
         </button>
 
         {showModal && (
-          <AuthModal setShowModal={setShowModal} isSignUp={isSignUp} />
+          <AuthModal
+            setShowModal={setShowModal}
+            setIsSigUp={setIsSignUp}
+            isSignUp={isSignUp}
+          />
         )}
       </div>
     </div>
