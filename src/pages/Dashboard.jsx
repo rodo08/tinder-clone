@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUser();
-  });
+  }, []);
 
   console.log("user", user);
 
@@ -62,7 +62,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <ChatContainer />
+      <ChatContainer user={user} />
       <div className="swipe-container">
         <div className="card-container">
           {characters.map((character) => (
