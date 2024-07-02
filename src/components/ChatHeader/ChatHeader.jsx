@@ -7,9 +7,9 @@ const ChatHeader = ({ user }) => {
     removeCookie("AuthToken", cookies.AuthToken);
     window.location.reload();
   };
-  if (!user) {
-    return null;
-  }
+  // if (!user) {
+  //   return null;
+  // }
 
   return (
     <div className="chat-container-header">
