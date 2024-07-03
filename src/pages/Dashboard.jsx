@@ -68,6 +68,11 @@ const Dashboard = () => {
     console.log(name + "left the screen!");
   };
 
+  const matchedUserIds = user?.matches.map(({users_id})=>{user_id}.concat(userId).concat
+(userId))
+
+  const filteredGenderedUsers = genderedUsers?.filter(genderedUsers => !matchedUserIds.includes(genderedUsers.user_id));
+
   return (
     <>
       {user && (
@@ -75,7 +80,7 @@ const Dashboard = () => {
           <ChatContainer user={user} />
           <div className="swipe-container">
             <div className="card-container">
-              {genderedUsers?.map((genderedUser) => (
+              {filteredGenderedUsers?.map((genderedUser) => (
                 <TinderCard
                   className="swipe"
                   key={genderedUser.first_name}
