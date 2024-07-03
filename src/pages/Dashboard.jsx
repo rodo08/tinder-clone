@@ -68,10 +68,13 @@ const Dashboard = () => {
     console.log(name + "left the screen!");
   };
 
-  const matchedUserIds = user?.matches.map(({users_id})=>{user_id}.concat(userId).concat
-(userId))
+  const matchedUserIds = user?.matches
+    .map(({ user_id }) => user_id)
+    .concat(userId);
 
-  const filteredGenderedUsers = genderedUsers?.filter(genderedUsers => !matchedUserIds.includes(genderedUsers.user_id));
+  const filteredGenderedUsers = genderedUsers?.filter(
+    (genderedUsers) => !matchedUserIds.includes(genderedUsers.user_id)
+  );
 
   return (
     <>
