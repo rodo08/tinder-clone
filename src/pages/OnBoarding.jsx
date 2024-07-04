@@ -23,14 +23,13 @@ const OnBoarding = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    console.log("submitted");
     e.preventDefault();
     try {
       const response = await axios.put("http://localhost:8000/user", {
         formData,
       });
       const success = response.status === 200;
-      console.log(response);
+
       if (success) {
         navigate("/dashboard");
       }
@@ -40,7 +39,6 @@ const OnBoarding = () => {
   };
 
   const handleChange = (e) => {
-    console.log("e", e);
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
