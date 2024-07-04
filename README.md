@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a Tinder clone, a dating application designed to facilitate connections between users based on their interests and preferences. Users can register, build profiles, browse potential matches, and initiate conversations with mutually interested users.
+This is a Tinder clone (only for desktop), a dating application designed to facilitate connections between users based on their interests and preferences. Users can register, build profiles, browse potential matches, and initiate conversations with mutually interested users.
 
 ## Features
 
@@ -39,3 +39,7 @@ The project structure is organized into different components:
 - **API Calls**: Axios is used for making HTTP requests to the backend API endpoints for user authentication, profile management, matching, and chatting functionalities.
 - **State Management**: Uses React's state and hooks (useState, useEffect) for managing component state and side effects.
 - **Cookies**: Manages user session with react-cookie library to store and retrieve user authentication tokens and user IDs securely.
+
+## License
+
+This project is licensed for educational purposes following a tutorial by [Ania Kubów](https://github.com/kubowania).
