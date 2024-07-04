@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const OnBoarding = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [cookies] = useCookies(["user"]);
   const [formData, setFormData] = useState({
     user_id: cookies.UserId,
     first_name: "",
@@ -23,14 +23,13 @@ const OnBoarding = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    console.log("submitted");
     e.preventDefault();
     try {
       const response = await axios.put("http://localhost:8000/user", {
         formData,
       });
       const success = response.status === 200;
-      console.log(response);
+
       if (success) {
         navigate("/dashboard");
       }
@@ -40,15 +39,12 @@ const OnBoarding = () => {
   };
 
   const handleChange = (e) => {
-    console.log("e", e);
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
   };
-
-  console.log(formData);
 
   return (
     <>
