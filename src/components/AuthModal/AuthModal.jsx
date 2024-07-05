@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import apiUrl from "../../assets/utils";
 
 const AuthModal = ({ setShowModal, isSignUp }) => {
   const [email, setEmail] = useState(null);
@@ -24,7 +25,7 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
         return;
       }
       const response = await axios.post(
-        `http://localhost:8000/${isSignUp ? "signup" : "login"}`,
+        `${apiUrl}/${isSignUp ? "signup" : "login"}`,
         { email, password }
       );
 

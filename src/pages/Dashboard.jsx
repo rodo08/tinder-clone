@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import ChatContainer from "../components/ChatContainer/ChatContainer";
 import axios from "axios";
+import apiUrl from "../assets/utils";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -14,7 +15,7 @@ const Dashboard = () => {
 
   const getUser = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/user", {
+      const response = await axios.get(`${apiUrl}/user`, {
         params: { userId },
       });
       setUser(response.data);
@@ -24,7 +25,7 @@ const Dashboard = () => {
   };
   const getGenderedUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/gendered-users", {
+      const response = await axios.get(`${apiUrl}/gendered-users`, {
         params: { gender: user?.gender_interest },
       });
       setGenderedUsers(response.data);
@@ -45,7 +46,7 @@ const Dashboard = () => {
 
   const updateMatches = async (matchedUserId) => {
     try {
-      await axios.put("http://localhost:8000/addmatch", {
+      await axios.put(`${apiUrl}/addmatch`, {
         userId,
         matchedUserId,
       });
